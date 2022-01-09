@@ -25,7 +25,13 @@ func TestGenerator(t *testing.T) {
 			title:   "interface without any methods",
 			dirName: "nomethod",
 		},
-		// TODO: with methods
+		{
+			title:   "interface with some methods",
+			dirName: "withmethod",
+		},
+		// TODO: with structs
+		// TODO: without parameter name
+		// TODO: variadic parameter
 		// TODO: multiple interfaces
 		// TODO: multiple files
 		// TODO: smallcase (unexported) interfaces
