@@ -25,6 +25,11 @@ func TestGenerator(t *testing.T) {
 			title:   "interface without any methods",
 			dirName: "nomethod",
 		},
+		// TODO: with methods
+		// TODO: multiple interfaces
+		// TODO: multiple files
+		// TODO: smallcase (unexported) interfaces
+		// TODO: imports
 	}
 
 	for _, tt := range tests {
