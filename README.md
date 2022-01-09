@@ -1,7 +1,7 @@
 # thunk
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-Thunk is a code generator to make struct's wrapper with methods evaluated lazily.
+Thunk is a code generator to make interface's wrapper with methods evaluated lazily.
 
 # Note
 

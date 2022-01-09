@@ -14,7 +14,7 @@ import (
 	"github.com/gostaticanalysis/knife"
 )
 
-const doc = "thunk is a code generator to make struct's wrapper with methods evaluated lazily."
+const doc = "thunk is a code generator to make interface's wrapper with methods evaluated lazily."
 
 var (
 	flagOutput string
@@ -52,7 +52,7 @@ func run(pass *codegen.Pass) error {
 		Pkg:       pass.Pkg,
 	}
 
-	tmpl, err := readTemplate("default")
+	tmpl, err := readTemplate("thunk")
 	if err != nil {
 		return xerrors.Errorf("unable to read template: %w", err)
 	}

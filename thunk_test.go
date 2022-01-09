@@ -1,4 +1,4 @@
-package thunk_test
+package thunk
 
 import (
 	"flag"
@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/gostaticanalysis/codegen/codegentest"
-	"github.com/syuparn/thunk"
 )
 
 var flagUpdate bool
@@ -18,6 +17,22 @@ func TestMain(m *testing.M) {
 }
 
 func TestGenerator(t *testing.T) {
-	rs := codegentest.Run(t, codegentest.TestData(), thunk.Generator, "a")
-	codegentest.Golden(t, rs, flagUpdate)
+	tests := []struct {
+		title   string
+		dirName string
+	}{
+		{
+			title:   "interface without any methods",
+			dirName: "nomethod",
+		},
+	}
+
+	for _, tt := range tests {
+		tt := tt // pin
+
+		t.Run(tt.title, func(t *testing.T) {
+			rs := codegentest.Run(t, codegentest.TestData(), Generator, tt.dirName)
+			codegentest.Golden(t, rs, flagUpdate)
+		})
+	}
 }
