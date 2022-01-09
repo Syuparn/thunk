@@ -29,13 +29,20 @@ func TestGenerator(t *testing.T) {
 			title:   "interface with some methods",
 			dirName: "withmethod",
 		},
-		// TODO: with structs
+		/*
+			// TODO: add test once package prefix can be trimmed
+			{
+				title:   "method signature with types defined in the same package",
+				dirName: "definedtype",
+			},
+		*/
 		// TODO: without parameter name
 		// TODO: variadic parameter
 		// TODO: multiple interfaces
 		// TODO: multiple files
 		// TODO: smallcase (unexported) interfaces
 		// TODO: imports
+		// TODO: import alias
 	}
 
 	for _, tt := range tests {
