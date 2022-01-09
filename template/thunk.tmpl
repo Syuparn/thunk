@@ -7,21 +7,11 @@ type Lazy{{$interfaceName}} struct {
 }
 
 {{range $methodName, $method := $interface.Methods}}
-func (l *Lazy{{$interfaceName}}) {{$methodName}}({{range $method.Signature.Params}}
-	{{- if (and $method.Signature.Variadic (eq . (last $method.Signature.Params)))}}
-        	{{- .Name}} ...{{(slice .Type).Elem}},
-	{{- else}}
-        	{{- .Name}} {{.Type}},
-	{{- end}}
-{{- end}}) func() ({{range $method.Signature.Results}}
-        {{- .Name}} {{.Type}},
-{{- end}}) {
-	return func() ({{range $method.Signature.Results}}
-        {{- .Name}} {{.Type}},
-{{- end}}) {
-		return l.inner.{{$methodName}}({{range $method.Signature.Params}}
-			{{- .Name}},
-		{{- end}})
+func (l *Lazy{{$interfaceName}}) {{$methodName}}(
+	{{- template "parameters" $method -}}
+) func() ({{template "results" $method}}) {
+	return func() ({{template "results" $method}}) {
+		return l.inner.{{$methodName}}({{template "paramNames" $method}})
 	}
 }
 {{end}}
@@ -30,3 +20,33 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 	return &Lazy{{$interfaceName}}{inner: inner}
 }
 {{end}}
+
+{{- /* templates */ -}}
+
+{{- /* parameters generates function parameters. $ should be method. */ -}}
+{{- define "parameters" -}}
+	{{- $method := $ -}}
+	{{- range $method.Signature.Params -}}
+		{{- if (and $method.Signature.Variadic (eq . (last $method.Signature.Params))) -}}
+			{{- .Name}} ...{{(slice .Type).Elem}},
+		{{- else -}}
+			{{- .Name}} {{.Type}},
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+
+{{- /* results generates function return types. $ should be method. */ -}}
+{{- define "results" -}}
+	{{- $method := $ -}}
+	{{- range $method.Signature.Results -}}
+        {{- .Name}} {{.Type}},
+	{{- end -}}
+{{- end -}}
+
+{{- /* paramNames generates function parameter names. $ should be method. */ -}}
+{{- define "paramNames" -}}
+	{{- $method := $ -}}
+	{{- range $method.Signature.Params -}}
+			{{- .Name}},
+	{{- end -}}
+{{- end -}}
