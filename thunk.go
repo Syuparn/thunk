@@ -12,7 +12,7 @@ import (
 	"github.com/gostaticanalysis/knife"
 )
 
-const doc = "thunk is ..."
+const doc = "thunk is a code generator to make struct's wrapper with methods evaluated lazily."
 
 var (
 	flagOutput string
