@@ -7,6 +7,7 @@ import (
 	"go/types"
 	"os"
 
+	"golang.org/x/tools/imports"
 	"golang.org/x/xerrors"
 
 	"github.com/gostaticanalysis/analysisutil"
@@ -67,9 +68,16 @@ func run(pass *codegen.Pass) error {
 		return xerrors.Errorf("failed to execute template: %w", err)
 	}
 
+	// format codes like `go fmt`
 	src, err := format.Source(buf.Bytes())
 	if err != nil {
 		return xerrors.Errorf("failed to format generated source: %w", err)
+	}
+
+	// remove unused imports
+	src, err = imports.Process(flagOutput, src, nil /* options */)
+	if err != nil {
+		return xerrors.Errorf("failed to remove unused imports: %w", err)
 	}
 
 	if flagOutput == "" {

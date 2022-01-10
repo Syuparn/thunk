@@ -49,6 +49,11 @@ func TestGenerator(t *testing.T) {
 			title:   "method signature without parameter name",
 			dirName: "noname",
 		},
+		// TODO: import packages with `/` (like `encoding/json`)
+		{
+			title:   "signature with imported types",
+			dirName: "withimport",
+		},
 		/*
 			// TODO: add test once package prefix can be trimmed
 			{
@@ -57,7 +62,6 @@ func TestGenerator(t *testing.T) {
 			},
 		*/
 		// TODO: smallcase (unexported) interfaces
-		// TODO: imports
 		// TODO: import alias
 	}
 
