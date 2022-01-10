@@ -45,6 +45,10 @@ func TestGenerator(t *testing.T) {
 			title:   "multiple source files",
 			dirName: "multifile",
 		},
+		{
+			title:   "method signature without parameter name",
+			dirName: "noname",
+		},
 		/*
 			// TODO: add test once package prefix can be trimmed
 			{
@@ -52,7 +56,6 @@ func TestGenerator(t *testing.T) {
 				dirName: "definedtype",
 			},
 		*/
-		// TODO: without parameter name
 		// TODO: smallcase (unexported) interfaces
 		// TODO: imports
 		// TODO: import alias

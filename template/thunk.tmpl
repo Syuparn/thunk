@@ -26,11 +26,17 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 {{- /* parameters generates function parameters. $ should be method. */ -}}
 {{- define "parameters" -}}
 	{{- $method := $ -}}
-	{{- range $method.Signature.Params -}}
-		{{- if (and $method.Signature.Variadic (eq . (last $method.Signature.Params))) -}}
-			{{- .Name}} ...{{(slice .Type).Elem}},
+	{{- range $i, $param := $method.Signature.Params -}}
+		{{- /* extract param name or generate it if not defined */ -}}
+		{{- $name := $param.Name -}}
+		{{- if not $name -}}
+			{{- $name = printf "arg%d" $i -}}
+		{{- end -}}
+
+		{{- if (and $method.Signature.Variadic (eq $param (last $method.Signature.Params))) -}}
+			{{- $name}} ...{{(slice $param.Type).Elem}},
 		{{- else -}}
-			{{- .Name}} {{.Type}},
+			{{- $name}} {{$param.Type}},
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
@@ -46,11 +52,17 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 {{- /* paramNames generates function parameter names. $ should be method. */ -}}
 {{- define "paramNames" -}}
 	{{- $method := $ -}}
-	{{- range $method.Signature.Params -}}
-		{{- if (and $method.Signature.Variadic (eq . (last $method.Signature.Params))) -}}
-			{{- .Name}}...,
+	{{- range $i, $param := $method.Signature.Params -}}
+		{{- /* extract param name or generate it if not defined */ -}}
+		{{- $name := $param.Name -}}
+		{{- if not $name -}}
+			{{- $name = printf "arg%d" $i -}}
+		{{- end -}}
+
+		{{- if (and $method.Signature.Variadic (eq $param (last $method.Signature.Params))) -}}
+			{{- $name}}...,
 		{{- else -}}
-			{{- .Name}},
+			{{- $name}},
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
