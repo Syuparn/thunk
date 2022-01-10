@@ -15,11 +15,11 @@ hello.Greet("Tom")
 
 // generated wrapper `LazyHello`
 lazyHello := NewLazyHello(hello)
-greetThunk := lazyHello.Greet("Tom") // Hello.Greet is not evaluated yet!
+greetThunk := lazyHello.Greet("Bob") // Hello.Greet is not evaluated yet!
 greetThunk()                         // Hello.Greet is evaluated here
 ```
 
-See `/testdata/src/hello` directory for details.
+See [/_examples/hello](https://github.com/Syuparn/thunk/tree/main/_examples/hello) for details.
 
 # Usage
 
