@@ -29,6 +29,10 @@ func TestGenerator(t *testing.T) {
 			title:   "interface with some methods",
 			dirName: "withmethod",
 		},
+		{
+			title:   "method signature with a variadic parameter",
+			dirName: "variadic",
+		},
 		/*
 			// TODO: add test once package prefix can be trimmed
 			{

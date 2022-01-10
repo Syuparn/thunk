@@ -47,6 +47,10 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 {{- define "paramNames" -}}
 	{{- $method := $ -}}
 	{{- range $method.Signature.Params -}}
+		{{- if (and $method.Signature.Variadic (eq . (last $method.Signature.Params))) -}}
+			{{- .Name}}...,
+		{{- else -}}
 			{{- .Name}},
+		{{- end -}}
 	{{- end -}}
 {{- end -}}
