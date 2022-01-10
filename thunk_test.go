@@ -22,6 +22,10 @@ func TestGenerator(t *testing.T) {
 		dirName string
 	}{
 		{
+			title:   "hello world (used for readme introduction)",
+			dirName: "hello",
+		},
+		{
 			title:   "interface without any methods",
 			dirName: "nomethod",
 		},
@@ -52,7 +56,6 @@ func TestGenerator(t *testing.T) {
 		// TODO: smallcase (unexported) interfaces
 		// TODO: imports
 		// TODO: import alias
-		// TODO: hello world for example
 	}
 
 	for _, tt := range tests {
