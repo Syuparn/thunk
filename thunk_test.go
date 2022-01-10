@@ -37,6 +37,10 @@ func TestGenerator(t *testing.T) {
 			title:   "source file with multiple interfaces",
 			dirName: "multiinterface",
 		},
+		{
+			title:   "multiple source files",
+			dirName: "multifile",
+		},
 		/*
 			// TODO: add test once package prefix can be trimmed
 			{
@@ -45,7 +49,6 @@ func TestGenerator(t *testing.T) {
 			},
 		*/
 		// TODO: without parameter name
-		// TODO: multiple files
 		// TODO: smallcase (unexported) interfaces
 		// TODO: imports
 		// TODO: import alias
