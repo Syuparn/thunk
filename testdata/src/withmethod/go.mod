@@ -1,4 +1,4 @@
-module variadic
+module withmethod
 
 go 1.17
 
