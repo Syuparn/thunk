@@ -10,20 +10,14 @@ import (
 	"golang.org/x/tools/imports"
 	"golang.org/x/xerrors"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/gostaticanalysis/analysisutil"
 	"github.com/gostaticanalysis/codegen"
 	"github.com/gostaticanalysis/knife"
 )
 
 const doc = "thunk is a code generator to make interface's wrapper with methods evaluated lazily."
-
-var (
-	flagOutput string
-)
-
-func init() {
-	Generator.Flags.StringVar(&flagOutput, "o", "", "output file name")
-}
 
 var Generator = &codegen.Generator{
 	Name: "thunk",
@@ -32,6 +26,8 @@ var Generator = &codegen.Generator{
 }
 
 func run(pass *codegen.Pass) error {
+	initDebugLog()
+
 	ifaces := map[string]*knife.Interface{}
 
 	s := pass.Pkg.Scope()
@@ -57,6 +53,7 @@ func run(pass *codegen.Pass) error {
 	if err != nil {
 		return xerrors.Errorf("unable to read template: %w", err)
 	}
+	log.Debugf("read template:\n%s\n---", tmpl)
 
 	t, err := knife.NewTemplate(td).Parse(tmpl)
 	if err != nil {
@@ -67,18 +64,21 @@ func run(pass *codegen.Pass) error {
 	if err := t.Execute(&buf, ifaces); err != nil {
 		return xerrors.Errorf("failed to execute template: %w", err)
 	}
+	log.Debugf("generated raw soruce code:\n%s\n---", string(buf.Bytes()))
 
 	// format codes like `go fmt`
 	src, err := format.Source(buf.Bytes())
 	if err != nil {
 		return xerrors.Errorf("failed to format generated source: %w", err)
 	}
+	log.Debugf("go-fmted soruce code:\n%s\n---", string(src))
 
 	// remove unused imports
 	src, err = imports.Process(flagOutput, src, nil /* options */)
 	if err != nil {
 		return xerrors.Errorf("failed to remove unused imports: %w", err)
 	}
+	log.Debugf("output soruce code:\n%s\n---", string(src))
 
 	if flagOutput == "" {
 		pass.Print(string(src))
