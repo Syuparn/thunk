@@ -25,7 +25,7 @@ See [/_examples/hello](https://github.com/Syuparn/thunk/tree/main/_examples/hell
 # Install
 
 ```bash
-$ go install github.com/syuparn/thunk@latest
+$ go install github.com/syuparn/thunk/cmd/thunk@latest
 ```
 
 # Usage
