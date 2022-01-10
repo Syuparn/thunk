@@ -33,6 +33,10 @@ func TestGenerator(t *testing.T) {
 			title:   "method signature with a variadic parameter",
 			dirName: "variadic",
 		},
+		{
+			title:   "source file with multiple interfaces",
+			dirName: "multiinterface",
+		},
 		/*
 			// TODO: add test once package prefix can be trimmed
 			{
@@ -41,12 +45,11 @@ func TestGenerator(t *testing.T) {
 			},
 		*/
 		// TODO: without parameter name
-		// TODO: variadic parameter
-		// TODO: multiple interfaces
 		// TODO: multiple files
 		// TODO: smallcase (unexported) interfaces
 		// TODO: imports
 		// TODO: import alias
+		// TODO: hello world for example
 	}
 
 	for _, tt := range tests {
