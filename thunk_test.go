@@ -49,6 +49,10 @@ func TestGenerator(t *testing.T) {
 			title:   "method signature without parameter name",
 			dirName: "noname",
 		},
+		{
+			title:   "method signature with composite types",
+			dirName: "composite",
+		},
 		// TODO: import packages with `/` (like `encoding/json`)
 		{
 			title:   "signature with imported types",
