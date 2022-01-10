@@ -1,5 +1,6 @@
 # thunk
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![Test](https://github.com/Syuparn/thunk/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Syuparn/thunk/actions/workflows/test.yml)
 
 `thunk` is a code generator to make interface's wrapper with methods evaluated lazily.
 
@@ -21,9 +22,24 @@ greetThunk()                         // Hello.Greet is evaluated here
 
 See [/_examples/hello](https://github.com/Syuparn/thunk/tree/main/_examples/hello) for details.
 
+# Install
+
+```bash
+$ go install github.com/syuparn/thunk@latest
+```
+
 # Usage
 
-(under construction...)
+```bash
+# generate wrapper code to zz_generated.thunk.go
+$ thunk -o zz_generated.thunk.go example.com/your/package
+```
+
+Also, you can use `go generate` to generate thunks.
+
+```go
+//go:generate thunk -o zz_generated.thunk.go example.com/your/package
+```
 
 # Note
 
