@@ -19,7 +19,11 @@ func (l *Lazy{{$interfaceName}}) {{$methodName}}(
 	{{- template "parameters" $method -}}
 ) func() ({{template "results" $method}}) {
 	return func() ({{template "results" $method}}) {
+		{{- if $method.Signature.Results }}
 		return l.inner.{{$methodName}}({{template "paramNames" $method}})
+		{{- else }}
+		l.inner.{{$methodName}}({{template "paramNames" $method}})
+		{{- end }}
 	}
 }
 {{end}}

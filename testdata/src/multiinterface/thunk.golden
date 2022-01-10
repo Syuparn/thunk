@@ -7,7 +7,7 @@ type LazyA struct {
 
 func (l *LazyA) Foo(a int) func() {
 	return func() {
-		return l.inner.Foo(a)
+		l.inner.Foo(a)
 	}
 }
 
@@ -21,7 +21,7 @@ type LazyB struct {
 
 func (l *LazyB) Bar(b string) func() {
 	return func() {
-		return l.inner.Bar(b)
+		l.inner.Bar(b)
 	}
 }
 

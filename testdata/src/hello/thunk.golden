@@ -5,9 +5,9 @@ type LazyHello struct {
 	inner Hello
 }
 
-func (l *LazyHello) Greet(person string) func() string {
-	return func() string {
-		return l.inner.Greet(person)
+func (l *LazyHello) Greet(person string) func() {
+	return func() {
+		l.inner.Greet(person)
 	}
 }
 

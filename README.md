@@ -11,12 +11,12 @@ Methods of the wrapper returns a *thunk* of the method call, instead of evaluati
 ```go
 // original interface `Hello`
 hello := NewHello()
-greet := hello.Greet("Tom")
+hello.Greet("Tom")
 
 // generated wrapper `LazyHello`
 lazyHello := NewLazyHello(hello)
 greetThunk := lazyHello.Greet("Tom") // Hello.Greet is not evaluated yet!
-lazyGreet := greetThunk()            // Hello.Greet is evaluated here
+greetThunk()                         // Hello.Greet is evaluated here
 ```
 
 See `/testdata/src/hello` directory for details.
