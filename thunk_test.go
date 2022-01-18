@@ -58,13 +58,10 @@ func TestGenerator(t *testing.T) {
 			title:   "signature with imported types",
 			dirName: "withimport",
 		},
-		/*
-			// TODO: add test once package prefix can be trimmed
-			{
-				title:   "method signature with types defined in the same package",
-				dirName: "definedtype",
-			},
-		*/
+		{
+			title:   "method signature with types defined in the same package",
+			dirName: "definedtype",
+		},
 		// TODO: smallcase (unexported) interfaces
 		// TODO: import alias
 	}
