@@ -21,8 +21,15 @@ func prettyType(pkg *knife.Package, t *knife.Type) string {
 		return strings.TrimPrefix(typ, pkg.Path+".")
 	}
 
+	// convert type path into type name if it is defined in imported packages
+	// NOTE: this is neccessary to remove `/`
+	for _, p := range pkg.Imports {
+		if strings.HasPrefix(typ, p.Path) {
+			return strings.Replace(typ, p.Path, p.Name, 1)
+		}
+	}
+
 	// TODO: handle import alias
-	// TODO: handle path slash
 
 	return typ
 }

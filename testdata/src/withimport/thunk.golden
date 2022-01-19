@@ -3,11 +3,18 @@ package withimport
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 )
 
 type LazyA struct {
 	inner A
+}
+
+func (l *LazyA) Bar(m json.Marshaler) func() {
+	return func() {
+		l.inner.Bar(m)
+	}
 }
 
 func (l *LazyA) Foo(ctx context.Context) func() io.Reader {
