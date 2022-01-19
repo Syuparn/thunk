@@ -5,8 +5,8 @@ type LazyMyIF struct {
 	inner MyIF
 }
 
-func (l *LazyMyIF) WithTypes(i MyInt, s mySecret) func() myStruct {
-	return func() myStruct {
+func (l *LazyMyIF) WithTypes(i MyInt, s mySecret) func() MyStruct {
+	return func() MyStruct {
 		return l.inner.WithTypes(i, s)
 	}
 }

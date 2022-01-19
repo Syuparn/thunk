@@ -55,7 +55,7 @@ func run(pass *codegen.Pass) error {
 	}
 	log.Debugf("read template:\n%s\n---", tmpl)
 
-	t, err := knife.NewTemplate(td).Parse(tmpl)
+	t, err := knife.NewTemplate(td).Funcs(extraFuncs).Parse(tmpl)
 	if err != nil {
 		return xerrors.Errorf("failed to parse template: %w", err)
 	}

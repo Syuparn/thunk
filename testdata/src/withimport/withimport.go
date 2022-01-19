@@ -2,10 +2,12 @@ package withimport
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 )
 
 type A interface {
 	Foo(ctx context.Context) io.Reader
-	// Bar(m json.Marshaler) // TODO: add test for packages with `/`
+	// handle packages with `/` (`encoding/json`)
+	Bar(m json.Marshaler)
 }

@@ -48,7 +48,7 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 		{{- if (and $method.Signature.Variadic (eq $param (last $method.Signature.Params))) -}}
 			{{- $name}} ...{{(slice $param.Type).Elem}},
 		{{- else -}}
-			{{- $name}} {{$param.Type}},
+			{{- $name}} {{$param.Type | prettyType (pkg)}},
 		{{- end -}}
 	{{- end -}}
 {{- end -}}
@@ -57,7 +57,7 @@ func NewLazy{{$interfaceName}}(inner {{$interfaceName}}) *Lazy{{$interfaceName}}
 {{- define "results" -}}
 	{{- $method := $ -}}
 	{{- range $method.Signature.Results -}}
-        {{- .Name}} {{.Type}},
+        {{- .Name}} {{.Type | prettyType (pkg)}},
 	{{- end -}}
 {{- end -}}
 
