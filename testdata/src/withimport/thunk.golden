@@ -17,6 +17,12 @@ func (l *LazyA) Bar(m json.Marshaler) func() {
 	}
 }
 
+func (l *LazyA) Baz(m map[json.Unmarshaler]io.Writer) func() {
+	return func() {
+		l.inner.Baz(m)
+	}
+}
+
 func (l *LazyA) Foo(ctx context.Context) func() io.Reader {
 	return func() io.Reader {
 		return l.inner.Foo(ctx)

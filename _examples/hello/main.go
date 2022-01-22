@@ -1,12 +1,15 @@
 package main
 
 func main() {
+	tom := Person("Tom")
+	bob := Person("Bob")
+
 	// original interface `Hello`
 	hello := NewHello()
-	hello.Greet("Tom")
+	hello.Greet(tom)
 
 	// generated wrapper `LazyHello`
 	lazyHello := NewLazyHello(hello)
-	greetThunk := lazyHello.Greet("Bob") // Hello.Greet is not evaluated yet!
-	greetThunk()                         // Hello.Greet is evaluated here
+	greetThunk := lazyHello.Greet(bob) // Hello.Greet is not evaluated yet!
+	greetThunk()                       // Hello.Greet is evaluated here
 }

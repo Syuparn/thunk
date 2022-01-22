@@ -69,10 +69,13 @@ func TestGenerator(t *testing.T) {
 			title:   "method signature with types defined in the same package",
 			dirName: "definedtype",
 		},
-		// TODO: enable to obtain full package path (with module path prefix) by pkg.Path
 		{
 			title:   "method signature with types defined in the same package (module has slashes)",
 			dirName: "definedtypeslash",
+		},
+		{
+			title:   "main package",
+			dirName: "inmain",
 		},
 		// TODO: smallcase (unexported) interfaces
 		// TODO: import alias

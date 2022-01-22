@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 type Hello interface {
-	Greet(person string)
+	Greet(person Person)
 }
 
 type myHello struct{}
 
-func (h *myHello) Greet(person string) {
+func (h *myHello) Greet(person Person) {
 	fmt.Printf("Hello, %s!\n", person)
 }
 
