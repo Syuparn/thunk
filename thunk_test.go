@@ -57,9 +57,22 @@ func TestGenerator(t *testing.T) {
 			title:   "signature with imported types",
 			dirName: "withimport",
 		},
+		/*
+			// TODO: run test once the issue is resolved
+			// https://github.com/golang/go/issues/46041
+			{
+				title:   "signature with 3rd-party imported types",
+				dirName: "withthirdimport",
+			},
+		*/
 		{
 			title:   "method signature with types defined in the same package",
 			dirName: "definedtype",
+		},
+		// TODO: enable to obtain full package path (with module path prefix) by pkg.Path
+		{
+			title:   "method signature with types defined in the same package (module has slashes)",
+			dirName: "definedtypeslash",
 		},
 		// TODO: smallcase (unexported) interfaces
 		// TODO: import alias
