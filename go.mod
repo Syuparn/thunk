@@ -1,6 +1,6 @@
 module github.com/syuparn/thunk
 
-go 1.17
+go 1.18
 
 require (
 	github.com/gostaticanalysis/analysisutil v0.7.1
